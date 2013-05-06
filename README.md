@@ -1,6 +1,6 @@
 # Bruno
 
-Street + Housenumber mapping to OSM data
+Street + Housenumber mapping to OSM data. This is a WIP
 
 ## Installation
 
@@ -19,6 +19,7 @@ Or install it yourself as:
 ## Usage
 
 bruno = Bruno.new street: "San Martin", housenumber: 460
+
 bruno.osm_nodes
 
 ## Contributing
