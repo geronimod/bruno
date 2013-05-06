@@ -1,6 +1,6 @@
 # Bruno
 
-Street + Housenumber mapping to OSM data. This is a WIP
+Street + Housenumber mapping to OSM data. This is a WIP, don't fork it until it reach version 1.x.
 
 ## Installation
 
