@@ -8,12 +8,18 @@ Gem::Specification.new do |gem|
   gem.version       = Bruno::VERSION
   gem.authors       = ["Geronimo Diaz"]
   gem.email         = ["geronimod@gmail.com"]
-  gem.description   = %q{Street + Housenumber mapping to OSM data. Given a street and a housenumber, bruno returns osm data }
-  gem.summary       = %q{Street + Housenumber mapping to OSM data}
+  gem.description   = %q{Street + Housenumber mapping to OSM data}
+  gem.summary       = %q{Street + Housenumber mapping to OSM data. Given a street and a housenumber, bruno returns osm data}
   gem.homepage      = "https://github.com/geronimod/bruno"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.rubyforge_project = "bruno"
+  
+  gem.add_dependency "parosm"
+  gem.add_development_dependency "rspec"
+
 end
