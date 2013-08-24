@@ -18,19 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-bruno_finder = Bruno::Finder.new osm_file, cache: true
+    bruno_finder = Bruno::Finder.new osm_file, cache: true
 
-# find a way
-response = bruno_finder.find "San Martin"
-response.success?
-response.ways
-response.way_ids
-response.way_nodes
+    # find a way
+    response = bruno_finder.find "San Martin"
+    response.success?
+    response.ways
+    response.way_ids
+    response.way_nodes
 
-# find by housenumber
-response = bruno_finder.find "San Martin", 440
-response.node_ids
-response.closest_node
+    # find by housenumber
+    response = bruno_finder.find "San Martin", 440
+    response.node_ids
+    response.closest_node
 
 ## Contributing
 
