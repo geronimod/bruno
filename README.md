@@ -18,9 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-bruno = Bruno.new street: "San Martin", housenumber: 460
+bruno_finder = Bruno::Finder.new osm_file, cache: true
 
-bruno.osm_nodes
+# find a way
+response = bruno_finder.find "San Martin"
+response.success?
+response.ways
+response.way_ids
+response.way_nodes
+
+# find by housenumber
+response = bruno_finder.find "San Martin", 440
+response.node_ids
+response.closest_node
 
 ## Contributing
 
