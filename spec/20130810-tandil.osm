@@ -15260,7 +15260,7 @@
     <tag k='name' v='Juncal' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='38103858' timestamp='2012-10-28T12:32:17Z' uid='215693' user='Beerforfree' visible='true' version='7' changeset='13659805'>
+  <way id='38103858' action='modify' timestamp='2012-10-28T12:32:17Z' uid='215693' user='Beerforfree' visible='true' version='7' changeset='13659805'>
     <nd ref='448193489' />
     <nd ref='1371159972' />
     <nd ref='1426957798' />
@@ -15268,7 +15268,7 @@
     <nd ref='1387573659' />
     <nd ref='448198667' />
     <tag k='highway' v='secondary' />
-    <tag k='name' v='Av. Sarmiento' />
+    <tag k='name' v='Av. Fragata Sarmiento' />
   </way>
   <way id='38103859' timestamp='2013-05-19T01:20:10Z' uid='1009211' user='nicolas17' visible='true' version='8' changeset='16187602'>
     <nd ref='448198669' />

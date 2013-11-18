@@ -12,6 +12,11 @@ describe Bruno do
     @bruno = Bruno::Finder.new spec_osm_file
   end
 
+  it "should not fail when it does't find the way" do
+    response = @bruno.find "ghost street"
+    response.success?.should be_false
+  end
+
   it "should find only one street" do
     response = @bruno.find "San Martin"
     response.success?.should be_true
@@ -37,11 +42,24 @@ describe Bruno do
     ]
   end
 
-  it "should find one node" do
+  it "should find the closest node for different cases" do
     response = @bruno.find "San Martin", "440"
     response.success?.should be_true
+    response.ways.count.should eq 1
     response.node_ids.should eq ["448193301", "448193302"]
     response.closest_node.id.should eq "448193301"
+
+    response = @bruno.find "San Martin", "100"
+    response.success?.should be_true
+    response.ways.count.should eq 1
+    response.node_ids.should eq ["448193297"]
+    response.closest_node.id.should eq "448193297"
+
+    response = @bruno.find "Sarmiento", "198"
+    response.success?.should be_true
+    response.ways.count.should eq 2
+    response.node_ids.should eq ["448193263"]
+    response.closest_node.id.should eq "448193263"
   end
 
 end

@@ -22,7 +22,7 @@ module Bruno
       ways = candidate_ways street
       disambiguate! ways, street
       
-      street_name = ways.first.last[:tags][:name]
+      street_name = ways.first.last[:tags][:name] if ways.any?
 
       if housenumber
         nodes = karlsruhe_find(ways, street_name, housenumber)
@@ -41,7 +41,6 @@ module Bruno
 
     def find_routeable_nodes(ways, karlsruhe_nodes)
       routeable_nodes = ways.map { |id, int| int[:nodes] }.flatten
-      
       Array(karlsruhe_nodes).map do |karlsruhe_node|
         routeable_node = routeable_nodes.min_by do |node_id|
           Utils.distance @osm.nodes[node_id], karlsruhe_node.last
@@ -51,10 +50,11 @@ module Bruno
     end
 
     def karlsruhe_find_by_node(street, housenumber)
-      @osm.nodes.find do |node|
+      found = @osm.nodes.find do |node|
         tags = node.last[:tags]
         tags[:"addr:street"] == street && tags[:"addr:housenumber"] == housenumber
       end
+      found && [found]
     end
 
     def karlsruhe_find_by_interpolation(street, housenumber)
@@ -111,12 +111,18 @@ module Bruno
     def candidate_ways(street)
       _street = cleared_street street
       
-      @osm.ways.find_all do |w|
+      ways = @osm.ways.find_all do |w|
         tags = w.last[:tags]
         if tags[:highway] && tags[:name]
           name = cleared_street tags[:name]
           name =~ /#{_street}/i
         end
+      end
+      
+      if ways.size > 1
+        ways.sort_by { |w| Utils.levenshtein_distance(street, w.last[:tags][:name]) }
+      else
+        ways
       end
     end
 
