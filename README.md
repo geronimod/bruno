@@ -1,6 +1,6 @@
 # Bruno
 
-Street + Housenumber mapping to OSM data. This is a WIP, don't fork it until it reach version 1.x.
+Street + Housenumber mapping to OSM data
 
 ## Installation
 
@@ -18,17 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-    bruno_finder = Bruno::Finder.new osm_file, cache: true
+    finder = Bruno::Finder.new spec_osm_file
 
     # find a way
-    response = bruno_finder.find "San Martin"
+    response = finder.find "San Martin"
     response.success?
     response.ways
     response.way_ids
     response.way_nodes
 
     # find by housenumber
-    response = bruno_finder.find "San Martin", 440
+    response = finder.find "San Martin", 440
     response.node_ids
     response.closest_node
 
